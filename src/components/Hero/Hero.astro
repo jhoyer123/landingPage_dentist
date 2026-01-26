@@ -1,0 +1,94 @@
+---
+import { Image } from "astro:assets";
+import heroImage from "../../images/heroImage.png";
+import BrandSlide from "./BrandSlide.astro";
+---
+
+<section
+  class="relative min-h-screen py-20 sm:pt-24 flex items-center overflow-hidden"
+  aria-labelledby="hero-title"
+>
+  <!-- Fondo decorativo -->
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 bg-[url('../images/heroBackgroundMob.jpg')]
+    md:bg-[url('../images/heroBackgrundDesk.jpg')] bg-cover bg-center bg-no-repeat
+    mask-[linear-gradient(to_bottom,black_55%,transparent_100%)]
+    opacity-60"
+  >
+  </div>
+
+  <div
+    class="relative z-10 mx-auto w-full max-w-6xl flex flex-col items-center justify-center px-4"
+  >
+    <div
+      class="w-full flex flex-col items-center justify-center
+      sm:flex-row-reverse sm:items-center lg:gap-18"
+    >
+      <!-- Imagen Hero -->
+      <div
+        class="drop-shadow-[0_20px_60px_rgba(59,130,246,0.90)] md:drop-shadow-[0_20px_60px_rgba(6,182,212,0.3)]"
+      >
+        <Image
+          src={heroImage}
+          alt="hero image dentist"
+          width={1280}
+          height={900}
+          sizes="(max-width: 640px) 160px, (max-width: 1024px) 240px, 280px"
+          loading="eager"
+          class="w-40 sm:w-56 lg:w-72 mask-[linear-gradient(to_bottom,black_85%,transparent_100%)]"
+        />
+      </div>
+
+      <div
+        class="flex flex-col gap-15 items-center sm:items-start text-center sm:text-start"
+      >
+        <!-- Título principal -->
+        <h1
+          id="hero-title"
+          class="font-heading font-extrabold text-4xl md:text-5xl lg:text-6xl max-w-100"
+        >
+          Tu <span class="text-accent">Sonrisa</span> en manos de
+          <span class="text-accent">Profesionales</span>
+        </h1>
+
+        <!-- Descripción -->
+        <p
+          class="font-body text-base lg:text-lg text-gray-700 md:text-foreground-muted max-w-md leading-relaxed bg-white/10 md:bg-white-30 backdrop-blur-sm px-4 py-3 rounded-lg border border-white/20"
+        >
+          Atención odontológica integral para niños y adultos, con tecnología
+          moderna y un trato humano.
+        </p>
+        <!-- CTAs -->
+        <div class="hidden sm:flex">
+          <div class="flex flex-wrap gap-10">
+            <a
+              href="#contact"
+              class="group relative px-8 py-3.5 bg-accent text-white rounded-full
+              shadow-lg transition-all duration-300
+              hover:scale-105 active:scale-95"
+            >
+              <span
+                class="relative z-10 font-medium text-sm md:text-md lg:text-lg"
+                >Contáctanos</span
+              >
+            </a>
+
+            <a
+              href="/about"
+              class="group relative px-8 py-3.5 bg-white text-gray-700 font-medium text-sm rounded-full
+              border-2 border-gray-200 shadow-md transition-all duration-300
+              hover:border-accent hover:text-accent hover:scale-105 active:scale-95"
+            >
+              <span
+                class="relative z-10 font-medium text-sm md:text-md lg:text-lg"
+                >Servicios</span
+              >
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <BrandSlide />
+</section>

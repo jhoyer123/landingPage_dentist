@@ -1,0 +1,208 @@
+---
+import { Image } from "astro:assets";
+import MenuButton from "../../../public/icons/Menu.astro";
+import CloseButton from "../../../public/icons/CloseMenu.astro";
+
+// Definimos los items
+const navItems = [
+  { name: "Inicio", link: "/" },
+  { name: "Nuestros Servicios", link: "#services" },
+  { name: "Sobre Nosotros", link: "#about" },
+  { name: "Agendar Cita", link: "#appointment", highlight: true }, // Lo moví arriba para que salga en los principales
+  { name: "Especialistas", link: "#specialists" },
+  { name: "Testimonios", link: "#testimonials" },
+  { name: "Contacto", link: "#contact" },
+];
+
+// LOGICA DE SEPARACIÓN:
+// Los primeros 4 van a la barra principal
+const mainItems = navItems.slice(0, 4);
+// El resto va al dropdown
+const dropdownItems = navItems.slice(4);
+---
+
+<header class="relative z-50">
+  <nav class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl">
+    <div
+      class="flex items-center justify-between gap-4 px-6 py-3 bg-white/20 backdrop-blur-lg border border-white/30 rounded-full shadow-xl transition-all duration-300"
+    >
+      <div class="flex items-center gap-3 shrink-0">
+        <div
+          class="w-10 h-10 rounded-full overflow-hidden border border-gray-300 shadow-sm"
+        >
+          <img
+            src="https://i.pinimg.com/736x/82/26/4d/82264d02a9d0ec89151be966e227bd0f.jpg"
+            alt="logo"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <span
+          class="font-heading font-bold text-lg text-gray-800 tracking-tight"
+        >
+          DentalCare
+        </span>
+      </div>
+
+      <div class="hidden lg:flex items-center gap-1">
+        {/* Renderizamos los 4 principales */}
+        {
+          mainItems.map((item) => (
+            <a
+              href={item.link}
+              class={`px-5 py-2 rounded-full text-md font-medium transition-all duration-300 hover:scale-105
+            ${
+              item.highlight
+                ? "bg-white text-accent shadow-sm hover:bg-white hover:scale-105"
+                : "text-gray-700 hover:text-foreground"
+            }`}
+            >
+              {item.name}
+            </a>
+          ))
+        }
+
+        {/* DROPDOWN "MÁS" */}
+        {
+          dropdownItems.length > 0 && (
+            <div class="relative group ml-2">
+              <button class="btnMore flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium text-gray-700 hover:bg-white/40 transition-all">
+                Más
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="transition-transform group-hover:rotate-180"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+
+              <div class="absolute right-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
+                <ul class="min-w-50 bg-white/90 backdrop-blur-xl border border-white/40 rounded-2xl shadow-2xl p-2 flex flex-col gap-1">
+                  {dropdownItems.map((item) => (
+                    <li>
+                      <a
+                        href={item.link}
+                        class="block px-4 py-2 rounded-xl text-gray-700 hover:bg-gray-200 hover:text-gray-900 text-sm transition-colors"
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )
+        }
+      </div>
+
+      <div class="lg:hidden">
+        <button
+          id="open-btn"
+          class="p-2 hover:bg-gray-100/50 rounded-full transition-colors cursor-pointer text-gray-800"
+        >
+          <MenuButton class="w-6 h-6" />
+        </button>
+
+        <button
+          id="close-btn"
+          class="hidden p-2 hover:bg-gray-100/50 rounded-full transition-colors cursor-pointer text-gray-800"
+        >
+          <CloseButton class="w-6 h-6" />
+        </button>
+      </div>
+    </div>
+
+    <div
+      id="menu-overlay"
+      class="hidden lg:hidden absolute top-0 left-0 w-full pt-24 pb-10 bg-[#EEEEEF] text-[#333] flex-col rounded-3xl shadow-2xl origin-top transition-all duration-500 ease-in-out -z-10 border border-gray-200"
+    >
+      <div class="px-8 pb-4 pt-2">
+        <h2 class="text-4xl font-light tracking-tighter text-gray-800">Menú</h2>
+      </div>
+
+      <ul class="flex flex-col w-full">
+        {
+          navItems.map((item, index) => (
+            <li class="group border-b border-gray-300 last:border-none">
+              <a
+                href={item.link}
+                class="item-menu relative flex items-center justify-between w-full px-8 py-4 hover:bg-white/40 transition-colors duration-300"
+              >
+                <div class="flex items-center gap-6 relative overflow-hidden">
+                  <span class="text-3xl font-light text-gray-300 group-hover:text-gray-400 transition-colors select-none font-mono">
+                    {`0${index + 1}`}
+                  </span>
+                  <span
+                    class={`text-lg font-medium z-10 ${item.highlight ? "text-blue-600" : "text-gray-700"}`}
+                  >
+                    {item.name}
+                  </span>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="px-8 pt-8 mt-auto">
+        <p class="text-xs text-gray-400 border-t border-gray-300 pt-4">
+          DentalCare © 2026
+        </p>
+      </div>
+    </div>
+  </nav>
+
+  <div
+    id="backdrop"
+    class="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity duration-300"
+  >
+  </div>
+</header>
+
+<script>
+  // El script sigue igual, solo controla la versión móvil
+  const openBtn = document.getElementById("open-btn");
+  const closeBtn = document.getElementById("close-btn");
+  const menuOverlay = document.getElementById("menu-overlay");
+  const backdrop = document.getElementById("backdrop");
+  const btnItems = document.querySelectorAll(".item-menu");
+
+  function toggleMenu() {
+    if (!menuOverlay || !backdrop || !openBtn || !closeBtn) return;
+    const isHidden = menuOverlay.classList.contains("hidden");
+
+    if (isHidden) {
+      menuOverlay.classList.remove("hidden");
+      backdrop.classList.remove("hidden");
+      // Animación
+      requestAnimationFrame(() => {
+        menuOverlay.style.opacity = "1";
+        menuOverlay.style.transform = "translateY(0)";
+      });
+      openBtn.classList.add("hidden");
+      closeBtn.classList.remove("hidden");
+    } else {
+      menuOverlay.classList.add("hidden");
+      backdrop.classList.add("hidden");
+      openBtn.classList.remove("hidden");
+      closeBtn.classList.add("hidden");
+    }
+  }
+
+  // Event Listeners
+  openBtn?.addEventListener("click", toggleMenu);
+  closeBtn?.addEventListener("click", toggleMenu);
+  backdrop?.addEventListener("click", toggleMenu);
+
+  // Cerrar al hacer click en un link del menú móvil
+  btnItems.forEach((btn) => {
+    btn.addEventListener("click", toggleMenu);
+  });
+</script>

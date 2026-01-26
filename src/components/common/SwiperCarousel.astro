@@ -1,0 +1,111 @@
+---
+// src/components/Carrusel.astro
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+interface Props {
+  id?: string;
+}
+
+const { id = "swiper-reutilizable" } = Astro.props;
+---
+
+<div class="swiper-container-wrapper relative">
+  <div class="swiper" id={id}>
+    <div class="swiper-wrapper">
+      <slot />
+    </div>
+
+    <!-- <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div> -->
+
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+
+<style>
+  .swiper {
+    width: 100%;
+    /* Ajusta este padding si sientes que los puntos (dots) están muy lejos o cerca */
+    padding-bottom: 50px;
+  }
+
+  /* TRUCO DE ALTURA:
+     Esto asegura que todos los slides tengan la misma altura 
+     del slide más alto (útil para cards).
+  */
+  .swiper-wrapper {
+    align-items: stretch;
+  }
+
+  /* Aseguramos que el slide ocupe todo el alto disponible */
+  :global(.swiper-slide) {
+    height: auto;
+    display: flex; /* Esto permite que el hijo (la card) use height: 100% */
+  }
+
+  /* Tus estilos de botones previos... */
+  :global(.swiper-button-next),
+  :global(.swiper-button-prev) {
+    color: #333;
+    background: rgba(255, 255, 255, 0.8);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 20; /* Asegura que estén encima de las cards */
+  }
+
+  :global(.swiper-button-next:after),
+  :global(.swiper-button-prev:after) {
+    font-size: 18px;
+    font-weight: bold;
+  }
+</style>
+
+<script>
+  import Swiper from "swiper";
+  import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
+  document.addEventListener("astro:page-load", () => {
+    initSwipers();
+  });
+
+  initSwipers();
+
+  function initSwipers() {
+    const swipers = document.querySelectorAll(".swiper");
+
+    swipers.forEach((swiperEl) => {
+      new Swiper(swiperEl as HTMLElement, {
+        modules: [Navigation, Pagination, Autoplay],
+        loop: true,
+        spaceBetween: 20,
+        slidesPerView: 1,
+
+        // --- AQUÍ ESTÁ LA CONFIGURACIÓN DEL AUTOPLAY ---
+        autoplay: {
+          delay: 3000, // Tiempo en milisegundos (3 segundos)
+          disableOnInteraction: false, // Si es 'true', se para cuando el usuario toca el carrusel
+          pauseOnMouseEnter: true, // (Opcional) Se pausa si pones el mouse encima
+        },
+        // -----------------------------------------------
+
+        breakpoints: {
+          640: { slidesPerView: 2, spaceBetween: 20 },
+          1024: { slidesPerView: 3, spaceBetween: 30 },
+        },
+
+        navigation: {
+          nextEl: swiperEl.querySelector(".swiper-button-next") as HTMLElement,
+          prevEl: swiperEl.querySelector(".swiper-button-prev") as HTMLElement,
+        },
+        pagination: {
+          el: swiperEl.querySelector(".swiper-pagination") as HTMLElement,
+          clickable: true,
+        },
+      });
+    });
+  }
+</script>

@@ -1,0 +1,138 @@
+---
+import SwiperCarousel from "../common/SwiperCarousel.astro";
+
+import ImgUno from "../../images/services/img1Services.jpg";
+import ImgDos from "../../images/services/img2Services.jpg";
+import ImgTres from "../../images/services/img3Services.jpg";
+import ImgCuatro from "../../images/services/img4Services.jpg";
+import ImgCinco from "../../images/services/img5Services.jpg";
+import ImgSeis from "../../images/services/img6Services.jpg";
+import { Image } from "astro:assets";
+
+import ArrowRight from "../../../public/icons/ArrowRight.astro";
+
+interface Service {
+  title: string;
+  description: string;
+  image: ImageMetadata;
+  icon: string;
+}
+
+const services: Service[] = [
+  {
+    title: "Odontología General",
+    description:
+      "Revisiones, limpiezas dentales y tratamientos preventivos para mantener una sonrisa saludable.",
+    image: ImgUno,
+    icon: "tooth",
+  },
+  {
+    title: "Blanqueamiento Dental",
+    description:
+      "Recupera el color natural de tus dientes con procedimientos seguros y efectivos.",
+    image: ImgDos,
+    icon: "implant",
+  },
+  {
+    title: "Ortodoncia",
+    description:
+      "Corrige la alineación dental y mejora tu sonrisa con tratamientos personalizados.",
+    image: ImgTres,
+    icon: "whitening",
+  },
+  {
+    title: "Endodoncia",
+    description:
+      "Tratamientos de conducto para aliviar el dolor y conservar tus piezas dentales.",
+    image: ImgCuatro,
+    icon: "braces",
+  },
+  {
+    title: "Prótesis Dentales",
+    description:
+      "Soluciones estéticas y funcionales para reemplazar piezas dentales perdidas.",
+    image: ImgCinco,
+    icon: "cleaning",
+  },
+  {
+    title: "Odontopediatría",
+    description:
+      "Atención especializada y amigable para el cuidado dental de los más pequeños.",
+    image: ImgSeis,
+    icon: "checkup",
+  },
+];
+---
+
+<section
+  id="services"
+  class="bg-background pt-30 px-4"
+  aria-labelledby="services-title"
+>
+  <div class="max-w-6xl mx-auto flex flex-col gap-5">
+    <span
+      class="text-foreground-muted font-bold tracking-widest text-sm uppercase flex items-center gap-2"
+    >
+      Nuestros servicios
+    </span>
+
+    <h2
+      id="services-title"
+      class="text-2xl md:text-3xl lg:text-4xl font-bold mt-2 leading-tight max-w-xl mb-7"
+    >
+      <span class="text-accent">Cuidado dental integral</span>
+      <br class="hidden md:block" />
+      diseñado para tu sonrisa y bienestar
+    </h2>
+
+    <SwiperCarousel>
+      {
+        services.map((service, index) => (
+          <div class="swiper-slide">
+            <article
+              class="bg-background-card rounded-4xl overflow-hidden group transition-all duration-300
+            shadow-2xl shadow-blue-100 ring-1 ring-blue-50 h-auto flex flex-col"
+            >
+              <div class="relative h-48">
+                <Image
+                  src={service.image}
+                  alt={`Tratamiento de ${service.title}`}
+                  width={400}
+                  height={192}
+                  quality={80}
+                  loading="lazy"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+
+                <div
+                  class="absolute z-10 -bottom-6 left-8 bg-blue-600 w-14 h-14
+                rounded-full border-4 border-white flex items-center justify-center shadow-lg"
+                >
+                  <span class="text-white">{index+1}</span>
+                </div>
+              </div>
+
+              <div class="pt-10 pb-8 px-8 h-full flex flex-col justify-between">
+                <h3 class="text-xl font-bold text-foreground mb-3">
+                  {service.title}
+                </h3>
+                <p class="text-foreground-muted text-sm md:text-md lg:text-lg leading-relaxed mb-6">
+                  {service.description}
+                </p>
+                <a
+                  href="#contact"
+                  class="inline-flex items-center text-accent font-semibold text-sm gap-1
+                group-hover:gap-2 transition-all"
+                  area-label={`Solicitar información sobre ${service.title}`}
+                >
+                  Solicitar información
+                  <ArrowRight />
+                </a>
+              </div>
+            </article>
+          </div>
+        ))
+      }
+    </SwiperCarousel>
+  </div>
+</section>

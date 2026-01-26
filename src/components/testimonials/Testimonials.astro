@@ -1,0 +1,114 @@
+---
+import SwiperCarousel from "../common/SwiperCarousel.astro";
+
+const testimonials = [
+  {
+    rating: "5.0",
+    title: "Atención profesional y cercana",
+    content:
+      "Desde la primera consulta me sentí en confianza. El trato fue excelente y el resultado superó mis expectativas.",
+    author: "Leslie Alexander",
+    role: "Paciente satisfecha",
+    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+  },
+  {
+    rating: "5.0",
+    title: "Totalmente recomendado",
+    content:
+      "El equipo es muy profesional y las instalaciones son modernas. Sin duda volveré para mis controles.",
+    author: "Bessie Lane",
+    role: "Paciente satisfecha",
+    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+  },
+  {
+    rating: "5.0",
+    title: "Excelente experiencia",
+    content:
+      "Me explicaron cada paso del tratamiento y resolvieron todas mis dudas. Me sentí muy bien atendido.",
+    author: "Carlos Méndez",
+    role: "Paciente",
+    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+  },
+  {
+    rating: "4.9",
+    title: "Resultados increíbles",
+    content:
+      "Mi sonrisa cambió por completo. La atención fue rápida, clara y muy profesional.",
+    author: "Ana Rodríguez",
+    role: "Paciente",
+    avatar: "https://randomuser.me/api/portraits/women/21.jpg",
+  },
+  {
+    rating: "5.0",
+    title: "Confianza desde el primer día",
+    content:
+      "Un equipo humano increíble. Se nota la experiencia y el cuidado en cada detalle.",
+    author: "Luis Fernández",
+    role: "Paciente",
+    avatar: "https://randomuser.me/api/portraits/men/45.jpg",
+  },
+];
+---
+
+<section class="bg-[#0B1528] py-20 px-4" aria-labelledby="testimonials-title">
+  <div class="max-w-6xl mx-auto flex flex-col gap-5">
+    <div class="text-center">
+      <span
+        class="text-foreground-muted font-bold tracking-widest text-sm uppercase flex items-center gap-2"
+      >
+        TESTIMONIOS
+      </span>
+    </div>
+
+    <h2
+      id="testimonials-title"
+      class="text-2xl md:text-3xl lg:text-4xl font-bold mt-2 leading-tight max-w-xl text-white mb-7"
+    >
+      Lo que dicen nuestros
+      <span class="text-accent"> pacientes</span>
+    </h2>
+
+    <SwiperCarousel>
+      {
+        testimonials.map((item) => (
+          <div class="swiper-slide">
+            <article class="bg-white rounded-[2.5rem] p-10 shadow-xl flex flex-col h-full justify-between">
+              <div class="flex items-center gap-2 mb-6">
+                <div class="flex text-yellow-400" aria-hidden="true">
+                  {Array.from({ length: 5 }).map(() => (
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+
+                <span class="font-bold text-slate-800 ml-2">{item.rating}</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-slate-900 mb-4">
+                {item.title}
+              </h3>
+
+              <p class="text-gray-500 leading-relaxed mb-8">“{item.content}”</p>
+
+              <div class="flex items-center gap-4">
+                <img
+                  src={item.avatar}
+                  alt={`Foto de ${item.author}`}
+                  loading="lazy"
+                  class="w-14 h-14 rounded-full object-cover border-2 border-blue-50"
+                />
+                <div>
+                  <p class="font-bold text-slate-900 leading-none">
+                    {item.author}
+                  </p>
+                  <p class="text-sm text-gray-400 mt-1">{item.role}</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        ))
+      }
+    </SwiperCarousel>
+  </div>
+</section>

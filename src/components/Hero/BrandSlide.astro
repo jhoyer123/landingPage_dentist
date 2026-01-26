@@ -1,0 +1,78 @@
+---
+import ShildCheck from "../../../public/icons/slide/ShildCheck.astro";
+import Cog from "../../../public/icons/slide/Cog.astro";
+import Sparkles from "../../../public/icons/slide/Sparkles.astro";
+import Caledar from "../../../public/icons/slide/Calendar.astro";
+import UserCheck from "../../../public/icons/slide/UserCheck.astro";
+const brands = [
+  {
+    name: "Materiales certificados",
+    logo: ShildCheck,
+  },
+  {
+    name: "Tecnología avanzada",
+    logo: Cog,
+  },
+  {
+    name: "Esterilización segura",
+    logo: Sparkles,
+  },
+  {
+    name: "Consultas rápidas",
+    logo: Caledar,
+  },
+  {
+    name: "Atención profesional",
+    logo: UserCheck,
+  },
+];
+
+// Duplicamos la lista para asegurar que siempre haya contenido visible
+const doubledBrands = [...brands, ...brands];
+---
+
+<div class="w-full overflow-hidden py-2 absolute bottom-15 max-w-6xl mx-auto left-0 right-0">
+  <!-- Contenedor principal con flex-nowrap -->
+  <div
+    class="flex w-max flex-nowrap animate-scroll hover:[animation-play-state:paused]"
+  >
+    {
+      doubledBrands.map((brand) => (
+        <div class="flex shrink-0 items-center justify-center px-5 md:px-10 gap-3 text-foreground-muted">
+          <brand.logo class="w-16 h-16 md:w-24 md:h-24 text-foreground-muted" />
+          <span class="text-foreground-muted">{brand.name}</span>
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Capa de niebla Izquierda -->
+  <div
+    class="absolute inset-y-0 left-0 w-1/6 bg-linear-to-r from-[#f9fafb] to-transparent pointer-events-none"
+  >
+  </div>
+
+  <!-- Capa de niebla Derecha -->
+  <div
+    class="absolute inset-y-0 right-0 w-1/6 bg-linear-to-l from-[#f9fafb] to-transparent pointer-events-none"
+  >
+  </div>
+</div>
+
+<style>
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      /* Se desplaza exactamente la mitad, que es el set original */
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll {
+    display: flex;
+    width: max-content;
+    animation: scroll 30s linear infinite;
+  }
+</style>

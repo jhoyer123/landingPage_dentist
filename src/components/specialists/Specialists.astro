@@ -1,0 +1,84 @@
+---
+import SwiperCarousel from "../common/SwiperCarousel.astro";
+
+interface Doctor {
+  name: string;
+  specialty: string;
+  image: string;
+  socials: string[];
+  active?: boolean;
+}
+
+const team: Doctor[] = [
+  {
+    name: "Dr. Olivia Hayes",
+    specialty: "Dentista Cosmético",
+    image: "/../src/images/specialists/sp1.jpg",
+    socials: ["facebook", "twitter", "instagram", "linkedin"],
+  },
+  {
+    name: "Dr. Emily Carter",
+    specialty: "Dentista General",
+    image: "/../src/images/specialists/sp2.jpg",
+    socials: ["facebook", "twitter", "instagram", "linkedin"],
+  },
+  {
+    name: "Dr. Lorena Smith",
+    specialty: "Ortodontista",
+    image: "/../src/images/specialists/sp3.jpg",
+    socials: ["facebook", "twitter", "instagram", "linkedin"],
+  },
+];
+---
+
+<section class="bg-slate-50 pt-20 md:pt-30 px-4" aria-labelledby="team-title">
+  <div class="max-w-6xl mx-auto flex flex-col gap-5">
+    <!-- Eyebrow -->
+    <div class="inline-block mb-2">
+      <span
+        class="text-foreground-muted font-bold tracking-widest text-sm uppercase flex items-center gap-2"
+      >
+        ESPECIALISTAS
+      </span>
+    </div>
+
+    <!-- section title -->
+    <h2
+      id="team-title"
+      class="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 leading-tight mb-8"
+    >
+      Conoce a nuestro
+      <span class="text-accent"> equipo profesional</span>
+    </h2>
+
+    <SwiperCarousel>
+      {
+        team.map((doctor) => (
+          <div class="swiper-slide p-1">
+            <article
+              class="bg-white rounded-[2.5rem] overflow-hidden transition-all duration-300
+            group ring-2 ring-blue-600 shadow-2xl shadow-blue-100 hover:shadow-xl"
+            >
+              <div class="relative aspect-4/5 overflow-hidden">
+                <img
+                  src={doctor.image}
+                  alt={`Fotografía del ${doctor.specialty} ${doctor.name}`}
+                  loading="lazy"
+                  class="w-full h-full object-cover transition-transform duration-500
+                group-hover:scale-110"
+                />
+              </div>
+
+              <div class="p-8">
+                <h3 class="text-xl font-bold text-slate-900">{doctor.name}</h3>
+                <p class="text-gray-400 text-sm mt-1 font-medium">
+                  {doctor.specialty}
+                </p>
+              </div>
+            </article>
+          </div>
+        ))
+      }
+    </SwiperCarousel>
+  </div>
+</section>

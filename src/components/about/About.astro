@@ -1,0 +1,95 @@
+---
+import { Image } from "astro:assets";
+import AboutImage from "../../images/aboutImage.jpg";
+---
+
+<section class="relative pt-30 overflow-hidden bg-white pb-15 px-4">
+  <div class="absolute top-0 right-0 w-1/2 h-full -z-10 translate-x-20">
+    <svg
+      viewBox="0 0 500 500"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-full h-full opacity-50"
+    >
+      <path
+        fill="#E0F2FE"
+        d="M44.7,-76.4C58.4,-69.2,70.2,-57.4,78.2,-43.3C86.2,-29.3,90.4,-13.1,88.4,2.5C86.4,18.1,78.2,33.1,68.2,46.3C58.2,59.5,46.4,70.9,32.7,77.4C19,83.9,3.4,85.5,-12.8,83.3C-29.1,81.1,-46,75.1,-59.4,64.2C-72.8,53.3,-82.7,37.5,-86.3,20.8C-89.9,4.1,-87.2,-13.5,-80.4,-29.7C-73.6,-45.9,-62.7,-60.7,-48.9,-67.9C-35.1,-75.1,-17.5,-74.7,-0.3,-74.2C16.9,-73.7,31,-73.2,44.7,-76.4Z"
+        transform="translate(250 250) scale(3)"></path>
+    </svg>
+  </div>
+
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col gap-5 md:flex-row items-center">
+      <div class="w-full lg:w-1/2 flex flex-col gap-5">
+        <div class="inline-block">
+          <span
+            class="text-foreground-muted font-bold tracking-widest text-sm uppercase flex items-center gap-2"
+          >
+            SOBRE NOSOTROS
+          </span>
+        </div>
+
+        <h2
+          class="text-2xl md:text-3xl lg:text-4xl font-bold mt-2 leading-tight max-w-xl mb-7"
+        >
+          Comprometidos <span class="text-accent">con tu salud dental</span>
+        </h2>
+
+        <div class="max-w-xl bg-accent/90 rounded-2xl p-6 border border-accent/30">
+          <p
+            class="text-white text-sm leading-relaxed md:text-md lg:text-lg"
+          >
+            Somos un consultorio dental enfocado en brindar atención
+            profesional, ética y personalizada. Nuestro objetivo es que cada
+            paciente se sienta escuchado, informado y seguro durante su
+            tratamiento. Trabajamos con tecnología actualizada y protocolos de
+            higiene estrictos para garantizar tu bienestar.
+          </p>
+        </div>
+      </div>
+
+      <div class="w-full lg:w-1/2">
+        <div
+          class="rounded-[3rem] shadow-2xl transform lg:rotate-2 hover:rotate-0 transition-transform duration-500"
+        >
+          <Image
+            src={AboutImage}
+            alt="Imagen sobre nosotros"
+            width={600}
+            height={400}
+            quality={80}
+            loading="lazy"
+            class="w-full h-full object-cover max-h-150 rounded-2xl"
+          />
+
+          <div
+            class="absolute z-10 -bottom-8 -left-8 bg-white p-6 rounded-2xl shadow-xl hidden md:block"
+          >
+            <div class="flex items-center gap-4">
+              <div class="bg-blue-600 p-3 rounded-full text-white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm text-gray-400 font-medium italic">
+                  Confían en nosotros Más de
+                </p>
+                <p class="text-xl font-bold text-slate-900">10k+ Pacientes</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

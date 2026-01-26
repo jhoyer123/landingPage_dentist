@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Inter:wght@400;500;600&family=Manrope:wght@600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-accent: "Manrope", sans-serif;
+}
+
+:root {
+  --color-background: #f9fafb;
+  --color-background-card: #ffffff;
+  --color-background-hero: #e7eaf1;
+  --color-foreground: #111827;
+  --color-accent: #223eff;
+  --color-secondary: #2563eb;
+  --color-foreground-muted: #6b7280;
+}
+
+@theme inline {
+  --color-background: var(--color-background);
+  --color-background-card: var(--color-background-card);
+  --color-background-hero: var(--color-background-hero);
+  --color-foreground: var(--color-foreground);
+  --color-accent: var(--color-accent);
+  --color-secondary: var(--color-secondary);
+  --color-foreground-muted: var(--color-foreground-muted);
+}
