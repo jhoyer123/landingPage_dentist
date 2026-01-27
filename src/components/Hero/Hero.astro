@@ -2,6 +2,9 @@
 import { Image } from "astro:assets";
 import heroImage from "../../images/heroImage.png";
 import BrandSlide from "./BrandSlide.astro";
+
+import heroBackgroundMob from "../../images/heroBackgroundMob.jpg";
+import heroBackgroundDesk from "../../images/heroBackgrundDesk.jpg";
 ---
 
 <section
@@ -9,13 +12,45 @@ import BrandSlide from "./BrandSlide.astro";
   aria-labelledby="hero-title"
 >
   <!-- Fondo decorativo -->
-  <div
+  <!-- <div
     aria-hidden="true"
     class="absolute inset-0 bg-[url('../images/heroBackgroundMob.jpg')]
     md:bg-[url('../images/heroBackgrundDesk.jpg')] bg-cover bg-center bg-no-repeat
-    mask-[linear-gradient(to_bottom,black_55%,transparent_100%)]
-    opacity-60"
+    mask-[linear-gradient(to_bottom,black_50%,transparent_100%)]
+    opacity-50"
   >
+  </div> -->
+
+  <!-- Fondo decorativo optimizado -->
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 bg-cover bg-center bg-no-repeat
+    mask-[linear-gradient(to_bottom,black_50%,transparent_100%)]
+    opacity-30"
+  >
+    <!-- Imagen de fondo para móvil -->
+    <Image
+      src={heroBackgroundMob}
+      alt=""
+      width={768}
+      height={1024}
+      format="webp"
+      quality={75}
+      loading="eager"
+      class="absolute inset-0 w-full h-full object-cover md:hidden"
+    />
+
+    <!-- Imagen de fondo para desktop -->
+    <Image
+      src={heroBackgroundDesk}
+      alt=""
+      width={1920}
+      height={1080}
+      format="webp"
+      quality={75}
+      loading="eager"
+      class="hidden md:block absolute inset-0 w-full h-full object-cover"
+    />
   </div>
 
   <div
@@ -23,7 +58,7 @@ import BrandSlide from "./BrandSlide.astro";
   >
     <div
       class="w-full flex flex-col items-center justify-center
-      sm:flex-row-reverse sm:items-center lg:gap-18"
+      sm:flex-row-reverse sm:items-center md:gap-20 lg:gap-30"
     >
       <!-- Imagen Hero -->
       <div
@@ -31,22 +66,25 @@ import BrandSlide from "./BrandSlide.astro";
       >
         <Image
           src={heroImage}
-          alt="hero image dentist"
+          alt="Dentista profesional brindando atención de calidad"
           width={1280}
           height={900}
+          format="webp"
+          quality={90}
           sizes="(max-width: 640px) 160px, (max-width: 1024px) 240px, 280px"
           loading="eager"
-          class="w-40 sm:w-56 lg:w-72 mask-[linear-gradient(to_bottom,black_85%,transparent_100%)]"
+          fetchpriority="high"
+          class="w-30 sm:w-46 md:w-45 lg:w-60 mask-[linear-gradient(to_bottom,black_85%,transparent_100%)]"
         />
       </div>
 
       <div
-        class="flex flex-col gap-15 items-center sm:items-start text-center sm:text-start"
+        class="flex flex-col sm:gap-10 md:gap-15 items-center sm:items-start text-center sm:text-start"
       >
         <!-- Título principal -->
         <h1
           id="hero-title"
-          class="font-heading font-extrabold text-4xl md:text-5xl lg:text-6xl max-w-100"
+          class="font-heading font-extrabold text-2xl sm:text-4xl md:text-5xl lg:text-6xl max-w-100"
         >
           Tu <span class="text-accent">Sonrisa</span> en manos de
           <span class="text-accent">Profesionales</span>
@@ -54,7 +92,7 @@ import BrandSlide from "./BrandSlide.astro";
 
         <!-- Descripción -->
         <p
-          class="font-body text-base lg:text-lg text-gray-700 md:text-foreground-muted max-w-md leading-relaxed bg-white/10 md:bg-white-30 backdrop-blur-sm px-4 py-3 rounded-lg border border-white/20"
+          class="font-body text-sm sm:text-base lg:text-lg text-gray-700 md:text-foreground-muted max-w-md leading-relaxed bg-white/10 md:bg-white-30 backdrop-blur-sm px-4 py-3 rounded-lg border border-white/20"
         >
           Atención odontológica integral para niños y adultos, con tecnología
           moderna y un trato humano.
@@ -67,6 +105,7 @@ import BrandSlide from "./BrandSlide.astro";
               class="group relative px-8 py-3.5 bg-accent text-white rounded-full
               shadow-lg transition-all duration-300
               hover:scale-105 active:scale-95"
+              aria-label="Contactar con nuestro equipo odontológico"
             >
               <span
                 class="relative z-10 font-medium text-sm md:text-md lg:text-lg"
@@ -75,10 +114,11 @@ import BrandSlide from "./BrandSlide.astro";
             </a>
 
             <a
-              href="/about"
+              href="#services"
               class="group relative px-8 py-3.5 bg-white text-gray-700 font-medium text-sm rounded-full
               border-2 border-gray-200 shadow-md transition-all duration-300
               hover:border-accent hover:text-accent hover:scale-105 active:scale-95"
+              aria-label="Ver nuestros servicios odontológicos"
             >
               <span
                 class="relative z-10 font-medium text-sm md:text-md lg:text-lg"

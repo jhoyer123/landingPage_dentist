@@ -1,10 +1,16 @@
 ---
 import SwiperCarousel from "../common/SwiperCarousel.astro";
 
+import Sp1 from "../../images/specialists/sp1.jpg";
+import Sp2 from "../../images/specialists/sp2.jpg";
+import Sp3 from "../../images/specialists/sp3.jpg";
+import { Image } from "astro:assets";
+import { lazy } from "astro:schema";
+
 interface Doctor {
   name: string;
   specialty: string;
-  image: string;
+  image: ImageMetadata;
   socials: string[];
   active?: boolean;
 }
@@ -13,25 +19,28 @@ const team: Doctor[] = [
   {
     name: "Dr. Olivia Hayes",
     specialty: "Dentista Cosmético",
-    image: "/../src/images/specialists/sp1.jpg",
+    image: Sp1,
     socials: ["facebook", "twitter", "instagram", "linkedin"],
   },
   {
     name: "Dr. Emily Carter",
     specialty: "Dentista General",
-    image: "/../src/images/specialists/sp2.jpg",
+    image: Sp2,
     socials: ["facebook", "twitter", "instagram", "linkedin"],
   },
   {
     name: "Dr. Lorena Smith",
     specialty: "Ortodontista",
-    image: "/../src/images/specialists/sp3.jpg",
+    image: Sp3,
     socials: ["facebook", "twitter", "instagram", "linkedin"],
   },
 ];
 ---
 
-<section class="bg-slate-50 pt-20 md:pt-30 px-4" aria-labelledby="team-title">
+<section
+  class="bg-linear-to-b from-transparent via-emerald-50/60 to-transparent pt-20 md:pt-30 px-4"
+  aria-labelledby="team-title"
+>
   <div class="max-w-6xl mx-auto flex flex-col gap-5">
     <!-- Eyebrow -->
     <div class="inline-block mb-2">
@@ -60,12 +69,13 @@ const team: Doctor[] = [
             group ring-2 ring-blue-600 shadow-2xl shadow-blue-100 hover:shadow-xl"
             >
               <div class="relative aspect-4/5 overflow-hidden">
-                <img
+                <Image
                   src={doctor.image}
-                  alt={`Fotografía del ${doctor.specialty} ${doctor.name}`}
+                  alt={doctor.name}
+                  width={600}
+                  height={750}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"
-                  class="w-full h-full object-cover transition-transform duration-500
-                group-hover:scale-110"
                 />
               </div>
 

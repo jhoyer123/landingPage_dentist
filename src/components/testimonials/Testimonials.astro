@@ -1,7 +1,16 @@
 ---
 import SwiperCarousel from "../common/SwiperCarousel.astro";
 
-const testimonials = [
+interface Testimonial {
+  rating: string;
+  title: string;
+  content: string;
+  author: string;
+  role: string;
+  avatar: string;
+}
+
+const testimonials: Testimonial[] = [
   {
     rating: "5.0",
     title: "Atención profesional y cercana",
@@ -50,22 +59,24 @@ const testimonials = [
 ];
 ---
 
-<section class="bg-[#0B1528] py-20 px-4" aria-labelledby="testimonials-title">
-  <div class="max-w-6xl mx-auto flex flex-col gap-5">
-    <div class="text-center">
-      <span
-        class="text-foreground-muted font-bold tracking-widest text-sm uppercase flex items-center gap-2"
-      >
-        TESTIMONIOS
-      </span>
-    </div>
+<section
+  class="relative bg-fixed bg-center bg-cover py-24 px-4 overflow-hidden"
+  style="background-image: url('https://i.pinimg.com/736x/c5/5a/bd/c55abdeda140d006158b955cad4e553a.jpg');"
+>
+  <div class="absolute inset-0 bg-[#0B1528]/30 z-0"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto flex flex-col gap-5">
+    <span
+      class="text-white font-bold tracking-widest text-sm uppercase gap-2"
+    >
+      TESTIMONIOS
+    </span>
 
     <h2
-      id="testimonials-title"
       class="text-2xl md:text-3xl lg:text-4xl font-bold mt-2 leading-tight max-w-xl text-white mb-7"
     >
       Lo que dicen nuestros
-      <span class="text-accent"> pacientes</span>
+      <span class="text-white"> pacientes</span>
     </h2>
 
     <SwiperCarousel>
@@ -74,29 +85,26 @@ const testimonials = [
           <div class="swiper-slide">
             <article class="bg-white rounded-[2.5rem] p-10 shadow-xl flex flex-col h-full justify-between">
               <div class="flex items-center gap-2 mb-6">
-                <div class="flex text-yellow-400" aria-hidden="true">
+                <div class="flex text-yellow-400">
                   {Array.from({ length: 5 }).map(() => (
                     <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
-
                 <span class="font-bold text-slate-800 ml-2">{item.rating}</span>
               </div>
 
               <h3 class="text-xl font-bold text-slate-900 mb-4">
                 {item.title}
               </h3>
-
               <p class="text-gray-500 leading-relaxed mb-8">“{item.content}”</p>
 
               <div class="flex items-center gap-4">
                 <img
                   src={item.avatar}
-                  alt={`Foto de ${item.author}`}
-                  loading="lazy"
-                  class="w-14 h-14 rounded-full object-cover border-2 border-blue-50"
+                  alt={item.author}
+                  class="w-14 h-14 rounded-full object-cover border-2 border-emerald-50"
                 />
                 <div>
                   <p class="font-bold text-slate-900 leading-none">

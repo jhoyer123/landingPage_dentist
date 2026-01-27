@@ -66,7 +66,7 @@ const services: Service[] = [
 
 <section
   id="services"
-  class="bg-background pt-30 px-4"
+  class="bg-linear-to-b from-transparent via-blue-200/50 to-transparent pt-30 px-4"
   aria-labelledby="services-title"
 >
   <div class="max-w-6xl mx-auto flex flex-col gap-5">
@@ -88,10 +88,10 @@ const services: Service[] = [
     <SwiperCarousel>
       {
         services.map((service, index) => (
-          <div class="swiper-slide">
+          <div class="swiper-slide w-full">
             <article
               class="bg-background-card rounded-4xl overflow-hidden group transition-all duration-300
-            shadow-2xl shadow-blue-100 ring-1 ring-blue-50 h-auto flex flex-col"
+            shadow-lg h-auto flex flex-col"
             >
               <div class="relative h-48">
                 <Image
@@ -108,7 +108,7 @@ const services: Service[] = [
                   class="absolute z-10 -bottom-6 left-8 bg-blue-600 w-14 h-14
                 rounded-full border-4 border-white flex items-center justify-center shadow-lg"
                 >
-                  <span class="text-white">{index+1}</span>
+                  <span class="text-white">{index + 1}</span>
                 </div>
               </div>
 
