@@ -1,162 +1,212 @@
 ---
-const benefits = [
-  "Atención personalizada",
-  "Profesionales certificados",
-  "Ambiente cómodo y moderno",
-  "Tratamientos sin dolor",
-  "Tecnología actualizada",
-  "Enfoque preventivo y estético",
+const services = [
+  {
+    title: "Diagnóstico 3D",
+    description:
+      "Tecnología de escaneo digital para diagnósticos precisos sin molestias.",
+    variant: "white", // Tarjeta Blanca
+    icon: "scan",
+  },
+  {
+    title: "Ortodoncia Invisible",
+    description:
+      "Alinea tu sonrisa discretamente con alineadores transparentes de última generación.",
+    variant: "accent", // Tarjeta Color Acento
+    icon: "smile",
+  },
+  {
+    title: "Implantes Dentales",
+    description:
+      "Recupera la funcionalidad y estética con materiales de titanio biocompatible.",
+    variant: "white", // Tarjeta Blanca
+    icon: "implant",
+  },
+  {
+    title: "Odontopediatría",
+    description:
+      "Cuidado especializado para los más pequeños en un ambiente divertido.",
+    variant: "accent", // Tarjeta Color Acento
+    icon: "child",
+  },
+  {
+    title: "Estética Dental",
+    description:
+      "Blanqueamientos y carillas para diseñar la sonrisa que siempre soñaste.",
+    variant: "white", // Tarjeta Blanca
+    icon: "diamond",
+  },
+  {
+    title: "Urgencias 24h",
+    description: "Atención prioritaria para dolor agudo o accidentes dentales.",
+    variant: "accent", // Tarjeta Color Acento
+    icon: "clock",
+  },
 ];
 ---
 
 <section
-  class="py-20 bg-white overflow-hidden px-4"
-  aria-labelledby="why-choose-us-title"
+  id="benefits"
+  class="py-20 relative overflow-hidden bg-linear-to-b from-transparent via-blue-200/50 to-transparent"
+  aria-labelledby="benefits-title"
 >
-  <div
-    class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20"
-  >
-    <div class="w-full lg:w-1/2">
-      <header class="flex flex-col gap-3">
+  <div class="max-w-6xl mx-auto relative z-10 px-4">
+    <div class="max-w-3xl mb-16 flex flex-col gap-5">
+      <span
+        class="text-foreground-muted font-bold tracking-widest text-sm uppercase mb-2 block"
+      >
+        BENEFICIOS
+      </span>
+      <h2
+        id="benefits-title"
+        class="ftext-2xl md:text-3xl lg:text-4xl font-bold mt-2 leading-tight max-w-xl mb-7"
+      >
+        Todo lo que tu sonrisa <br />
         <span
-          class="text-foreground-muted font-bold tracking-[0.2em] text-xs uppercase"
+          class="text-transparent bg-clip-text bg-linear-to-r from-accent to-secondary"
+          >necesita en un solo lugar</span
         >
-          Beneficios
-        </span>
-
-        <h2 id="why-choose-us-title" class="text-accent text-lg font-medium">
-          ¿Por qué elegirnos?
-        </h2>
-
-        <h3
-          class="text-2xl md:text-3xl lg:text-4xl font-black text-slate-900 leading-tight"
-        >
-          15 años de experiencia en
-          <span class="text-blue-600">cuidado dental profesional</span>
-        </h3>
-
-        <p
-          class="text-slate-500 text-md md:text-lg leading-relaxed max-w-xl mt-4"
-        >
-          Brindamos atención odontológica moderna, segura y personalizada,
-          enfocada en el bienestar integral de nuestros pacientes.
-        </p>
-      </header>
-
-      <ul class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4" role="list">
-        {
-          benefits.map((benefit) => (
-            <li class="flex items-center gap-3 group">
-              <span class="bg-blue-50 text-blue-600 rounded-full p-1 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
-                <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </span>
-              <span class="text-slate-700 font-medium text-sm">{benefit}</span>
-            </li>
-          ))
-        }
-      </ul>
+      </h2>
+      <p class="font-body text-foreground-muted text-lg">
+        Combinamos tecnología avanzada con un trato humano para ofrecerte una
+        experiencia dental sin estrés.
+      </p>
     </div>
 
-    <div
-      class="relative w-full lg:w-1/2 flex justify-center items-center py-10"
-    >
-      <div class="relative group animate-float">
-        <div
-          class="absolute inset-0 bg-blue-400/10 blur-[100px] rounded-full scale-150 group-hover:bg-emerald-400/20 transition-colors duration-1000"
-        >
-        </div>
-
-        <a
-          href="#contacto"
-          class="relative z-10 block transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.265,1.55)] group-hover:rotate-360 group-hover:scale-105"
-        >
-          <svg
-            viewBox="0 0 200 200"
-            class="w-64 h-64 md:w-80 md:h-80 drop-shadow-[0_20px_50px_rgba(0,0,0,0.1)]"
-          >
-            <path
-              d="M50,40 C50,25 70,20 100,20 C130,20 150,25 150,40 C150,60 160,80 150,110 C145,130 140,170 120,180 C110,185 105,160 100,160 C95,160 90,185 80,180 C60,170 55,130 50,110 C40,80 50,60 50,40 Z"
-              fill="white"
-              stroke="#E2E8F0"
-              stroke-width="2"></path>
-            <path
-              d="M70,40 Q100,30 130,40"
-              fill="none"
-              stroke="#F1F5F9"
-              stroke-width="6"
-              stroke-linecap="round"></path>
-          </svg>
-
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        services.map((item) => (
           <div
-            class="absolute inset-0 flex flex-col items-center justify-center group-hover:rotate-[-360deg] transition-all duration-700"
+            class:list={[
+              "border border-gray-300 group p-8 rounded-4xl transition-all duration-300 hover:-translate-y-2 flex flex-col items-center text-center gap-5",
+              // Lógica de estilos según la variante
+              item.variant === "accent"
+                ? "bg-accent text-white shadow-xl shadow-accent/25"
+                : "bg-background-card text-foreground shadow-lg shadow-gray-100 border border-gray-100 hover:border-accent/20",
+            ]}
           >
-            <span
-              class="text-[10px] font-black text-blue-900/40 uppercase tracking-widest mb-1"
-              >Pedir</span
-            >
             <div
-              class="bg-blue-600 p-3 rounded-2xl shadow-lg shadow-blue-200 text-white"
+              class:list={[
+                "w-16 h-16 rounded-2xl flex items-center justify-center mb-2 transition-transform duration-300 group-hover:scale-110",
+                item.variant === "accent"
+                  ? "bg-white/20 text-white"
+                  : "bg-accent/10 text-accent",
+              ]}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-6 h-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                ></path>
-              </svg>
+              {item.icon === "scan" && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-8 h-8"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+                  />
+                </svg>
+              )}
+              {item.icon === "smile" && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-8 h-8"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              )}
+              {item.icon === "implant" && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-8 h-8"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  />
+                </svg>
+              )}
+              {item.icon === "child" && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-8 h-8"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              )}
+              {item.icon === "diamond" && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-8 h-8"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
+                  />
+                </svg>
+              )}
+              {item.icon === "clock" && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-8 h-8"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              )}
             </div>
-            <span
-              class="text-[10px] font-black text-blue-900/40 uppercase tracking-widest mt-2"
-              >Cita</span
-            >
-          </div>
-        </a>
 
-        <div
-          class="absolute top-10 -right-4 z-20 bg-white px-3 py-1.5 rounded-full shadow-xl border border-slate-100 flex items-center gap-2 group-hover:translate-x-4 transition-transform duration-500"
-        >
-          <span class="relative flex h-2 w-2">
-            <span
-              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
-            ></span>
-            <span
-              class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"
-            ></span>
-          </span>
-          <span
-            class="text-[9px] font-bold text-slate-600 uppercase tracking-tighter"
-            >Disponible</span
-          >
-        </div>
-      </div>
+            <h3 class="font-heading font-bold text-xl tracking-tight">
+              {item.title}
+            </h3>
+
+            <p
+              class:list={[
+                "font-body text-sm leading-relaxed",
+                item.variant === "accent"
+                  ? "text-blue-100"
+                  : "text-foreground-muted",
+              ]}
+            >
+              {item.description}
+            </p>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
-
-<style>
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-15px);
-    }
-  }
-  .animate-float {
-    animation: float 5s ease-in-out infinite;
-  }
-</style>
