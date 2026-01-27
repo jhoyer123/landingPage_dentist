@@ -57,10 +57,10 @@ import heroBackgroundDesk from "../../images/heroBackgrundDesk.jpg";
         <Image
           src={heroImage}
           alt="Dentista profesional brindando atención de calidad"
-          width={1280}
+          widths={[160, 240, 280, 400, 640]}
           height={900}
           format="webp"
-          quality={90}
+          quality={85}
           sizes="(max-width: 640px) 160px, (max-width: 1024px) 240px, 280px"
           loading="eager"
           fetchpriority="high"
@@ -98,7 +98,7 @@ import heroBackgroundDesk from "../../images/heroBackgrundDesk.jpg";
               aria-label="Contactar con nuestro equipo odontológico"
             >
               <span
-                class="relative z-10 font-medium text-sm md:text-md lg:text-lg"
+                class="font-accent relative z-10 font-medium text-sm md:text-md lg:text-lg"
                 >Contáctanos</span
               >
             </a>
@@ -111,7 +111,7 @@ import heroBackgroundDesk from "../../images/heroBackgrundDesk.jpg";
               aria-label="Ver nuestros servicios odontológicos"
             >
               <span
-                class="relative z-10 font-medium text-sm md:text-md lg:text-lg"
+                class="font-accent relative z-10 font-medium text-sm md:text-md lg:text-lg"
                 >Servicios</span
               >
             </a>
