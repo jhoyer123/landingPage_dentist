@@ -10,13 +10,16 @@ const navItems = [
   { name: "Inicio", link: "/" },
   { name: "Nuestros Servicios", link: "#services" },
   { name: "Sobre Nosotros", link: "#about" },
-  { name: "Agendar Cita", link: "#appointment", highlight: true }, // Lo moví arriba para que salga en los principales
+  {
+    name: "Agendar Cita",
+    link: "https://www.whatsapp.com/?lang=es",
+    highlight: true,
+  },
   { name: "Especialistas", link: "#specialists" },
   { name: "Testimonios", link: "#testimonials" },
   { name: "Contacto", link: "#contact" },
 ];
 
-// LOGICA DE SEPARACIÓN:
 // Los primeros 4 van a la barra principal
 const mainItems = navItems.slice(0, 4);
 // El resto va al dropdown
@@ -45,6 +48,7 @@ const dropdownItems = navItems.slice(4);
           mainItems.map((item) => (
             <a
               href={item.link}
+              target={item.highlight ? "_blank" : "_self"}
               class={`px-5 py-2 rounded-full text-md font-medium font-body transition-all duration-300 hover:scale-105
             ${
               item.highlight
@@ -57,7 +61,7 @@ const dropdownItems = navItems.slice(4);
           ))
         }
 
-        {/* DROPDOWN "MÁS" */}
+        {/* dropdown "Más" */}
         {
           dropdownItems.length > 0 && (
             <div class="relative group ml-2">
@@ -153,7 +157,9 @@ const dropdownItems = navItems.slice(4);
       </ul>
 
       <div class="px-8 pt-3 mt-auto">
-        <p class="text-xs font-body text-gray-400 border-t border-gray-300 pt-4">
+        <p
+          class="text-xs font-body text-gray-400 border-t border-gray-300 pt-4"
+        >
           DentalCare © 2026
         </p>
       </div>

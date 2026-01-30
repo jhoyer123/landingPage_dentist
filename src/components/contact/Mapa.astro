@@ -1,0 +1,71 @@
+<div
+  class="w-full h-64 rounded-3xl overflow-hidden shadow-lg border-4 border-white relative group"
+  data-map-container
+>
+  <!-- Placeholder mientras carga -->
+  <div
+    class="w-full h-full bg-gray-200 flex items-center justify-center"
+    data-map-placeholder
+  >
+    <p class="text-gray-500">Toca para cargar el mapa</p>
+  </div>
+
+  <!-- El iframe se carga solo cuando sea visible o al hacer clic -->
+  <iframe
+    title="Ubicación"
+    data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1474.9818754498954!2d-68.12125914897575!3d-16.49428276305774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915f206a3bcdef75%3A0x11143753a4196444!2sMonumento%20a%20Germ%C3%A1n%20Busch!5e0!3m2!1ses-419!2sbo!4v1769737597945!5m2!1ses-419!2sbo"
+    data-map-iframe
+    class="w-full h-full border-0 grayscale group-hover:grayscale-0 transition-all duration-500 hidden"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+  >
+  </iframe>
+
+  <div
+    class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-sm text-xs font-bold text-foreground pointer-events-none"
+  >
+    Ver en mapa grande
+  </div>
+</div>
+
+<script>
+  // Cargar el mapa solo cuando sea visible
+  const mapContainer = document.querySelector("[data-map-container]");
+  const mapIframe = document.querySelector(
+    "[data-map-iframe]",
+  ) as HTMLIFrameElement | null;
+  const mapPlaceholder = document.querySelector("[data-map-placeholder]");
+
+  const loadMap = () => {
+    if (mapIframe && mapPlaceholder) {
+      const src = mapIframe.getAttribute("data-src");
+
+      // Validar que src no sea null
+      if (src) {
+        mapIframe.setAttribute("src", src);
+        mapIframe.classList.remove("hidden");
+        mapPlaceholder.classList.add("hidden");
+      }
+    }
+  };
+
+  // Cargar cuando sea visible (Intersection Observer)
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          loadMap();
+          observer.disconnect();
+        }
+      });
+    },
+    { threshold: 0.1 },
+  );
+
+  if (mapContainer) {
+    observer.observe(mapContainer);
+
+    // O cargar al hacer clic
+    mapContainer.addEventListener("click", loadMap, { once: true });
+  }
+</script>

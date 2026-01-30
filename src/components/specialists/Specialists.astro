@@ -38,7 +38,7 @@ const team: Doctor[] = [
 
 <section
   id="specialists"
-  class="bg-linear-to-b from-transparent via-emerald-50/60 to-transparent pt-20 md:pt-30 px-4"
+  class="bg-linear-to-b from-transparent via-emerald-50/60 to-transparent pt-20 pb-20 md:pb-30  md:pt-30 px-4"
   aria-labelledby="team-title"
 >
   <div class="max-w-6xl mx-auto flex flex-col gap-5">
@@ -59,8 +59,8 @@ const team: Doctor[] = [
       Conoce a nuestro
       <span class="text-accent"> equipo profesional</span>
     </h2>
-
-    <SwiperCarousel>
+    <!-- specialists -->
+    <div class="grid grid-cols-1 gap-3 sm:grid-cols-3" >
       {
         team.map((doctor) => (
           <div class="swiper-slide p-1">
@@ -91,6 +91,6 @@ const team: Doctor[] = [
           </div>
         ))
       }
-    </SwiperCarousel>
+    </div>
   </div>
 </section>

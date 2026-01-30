@@ -1,45 +1,60 @@
 ---
-const services = [
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import Child from "../../../public/icons/Benefits/Child.astro";
+import Clock from "../../../public/icons/Benefits/Clock.astro";
+import Diamond from "../../../public/icons/Benefits/Diamond.astro";
+import Implant from "../../../public/icons/Benefits/Implant.astro";
+import Scan from "../../../public/icons/Benefits/Scan.astro";
+import Smile from "../../../public/icons/Benefits/Smile.astro";
+
+interface Service {
+  title: string;
+  description: string;
+  variant: "accent" | "white";
+  icon: AstroComponentFactory;
+}
+
+const services: Service[] = [
   {
     title: "Diagnóstico 3D",
     description:
       "Tecnología de escaneo digital para diagnósticos precisos sin molestias.",
-    variant: "white", // Tarjeta Blanca
-    icon: "scan",
+    variant: "white",
+    icon: Scan,
   },
   {
     title: "Ortodoncia Invisible",
     description:
       "Alinea tu sonrisa discretamente con alineadores transparentes de última generación.",
-    variant: "accent", // Tarjeta Color Acento
-    icon: "smile",
+    variant: "accent",
+    icon: Smile,
   },
   {
     title: "Implantes Dentales",
     description:
       "Recupera la funcionalidad y estética con materiales de titanio biocompatible.",
-    variant: "white", // Tarjeta Blanca
-    icon: "implant",
+    variant: "white",
+    icon: Implant,
   },
   {
     title: "Odontopediatría",
     description:
       "Cuidado especializado para los más pequeños en un ambiente divertido.",
-    variant: "accent", // Tarjeta Color Acento
-    icon: "child",
+    variant: "accent",
+    icon: Child,
   },
   {
     title: "Estética Dental",
     description:
       "Blanqueamientos y carillas para diseñar la sonrisa que siempre soñaste.",
-    variant: "white", // Tarjeta Blanca
-    icon: "diamond",
+    variant: "white",
+    icon: Diamond,
   },
   {
     title: "Urgencias 24h",
     description: "Atención prioritaria para dolor agudo o accidentes dentales.",
-    variant: "accent", // Tarjeta Color Acento
-    icon: "clock",
+    variant: "accent",
+    icon: Clock,
   },
 ];
 ---
@@ -78,7 +93,6 @@ const services = [
           <div
             class:list={[
               "border border-gray-300 group p-8 rounded-4xl transition-all duration-300 hover:-translate-y-2 flex flex-col items-center text-center gap-5",
-              // Lógica de estilos según la variante
               item.variant === "accent"
                 ? "bg-accent text-white shadow-xl shadow-accent/25"
                 : "bg-background-card text-foreground shadow-lg shadow-gray-100 border border-gray-100 hover:border-accent/20",
@@ -92,102 +106,7 @@ const services = [
                   : "bg-accent/10 text-accent",
               ]}
             >
-              {item.icon === "scan" && (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-8 h-8"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
-                  />
-                </svg>
-              )}
-              {item.icon === "smile" && (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-8 h-8"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              )}
-              {item.icon === "implant" && (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-8 h-8"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  />
-                </svg>
-              )}
-              {item.icon === "child" && (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-8 h-8"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              )}
-              {item.icon === "diamond" && (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-8 h-8"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
-                  />
-                </svg>
-              )}
-              {item.icon === "clock" && (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-8 h-8"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              )}
+              <item.icon />
             </div>
 
             <h3 class="font-heading font-bold text-xl tracking-tight">

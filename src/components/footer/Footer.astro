@@ -1,4 +1,5 @@
 ---
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 import Facebook from "../../../public/icons/social/Facebook.astro";
 import Instagram from "../../../public/icons/social/Instagram.astro";
 import Tiktok from "../../../public/icons/social/Tiktok.astro";
@@ -8,31 +9,38 @@ import Tooth from "../../../public/icons/Tooth.astro";
 interface SocialLink {
   name: string;
   href: string;
-  icon: any;
+  ariaLabel: string;
+  title: string;
+  icon: AstroComponentFactory;
 }
 
 const socialLinks: SocialLink[] = [
   {
     name: "Facebook",
-    href: "#",
+    href: "https://www.facebook.com/?locale=es_LA",
+    ariaLabel: "Facebook",
+    title: "Visitar nuestra página de Facebook",
     icon: Facebook,
   },
   {
     name: "Instagram",
-    href: "#",
+    href: "https://www.instagram.com/",
+    ariaLabel: "Instagram",
+    title: "Visitar nuestro perfil de Instagram",
     icon: Instagram,
   },
   {
     name: "Tiktok",
-    href: "#",
+    href: "https://www.tiktok.com/es-419/",
+    ariaLabel: "Tiktok",
+    title: "Visitar nuestro perfil de Tiktok",
     icon: Tiktok,
   },
 ];
 
-// Footer.astro
 const currentYear = new Date().getFullYear();
 
-// Datos simulados para la clínica (fáciles de editar)
+// Datos simulados para la clínica y tratamientos
 const links = {
   treatments: [
     { name: "Limpieza y Prevención", href: "#services" },
@@ -69,9 +77,12 @@ const links = {
           ¿Listo para sonreír con confianza?
         </p>
         <a
-          href="#cita"
+          href="https://www.whatsapp.com/?lang=es"
           class="bg-accent hover:bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 focus:ring-4 focus:ring-blue-500/30 focus:outline-none shadow-lg shadow-blue-900/20"
           aria-label="Agendar una cita ahora"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Agendar una cita ahora"
         >
           Agendar Cita
         </a>
@@ -90,8 +101,11 @@ const links = {
               socialLinks.map((social) => (
                 <a
                   href={social.href}
-                  class="text-gray-300 hover:text-blue-300 transition-colors"
-                  aria-label={social.name}
+                  class="text-gray-300 hover:scale-105 transition-transform duration-300"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.ariaLabel}
+                  title={social.title}
                 >
                   <social.icon class="w-10 h-10" />
                 </a>
@@ -100,9 +114,8 @@ const links = {
           </div>
         </div>
       </div>
-      <!-- clinica -->
+      <!-- clinica, tratamientos -->
       <div class="sm:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-10">
-        <!-- tratamientos -->
         <div class="">
           <h3 class="text-white font-semibold mb-4">Tratamientos</h3>
           <ul class="space-y-3">
@@ -112,6 +125,7 @@ const links = {
                   <a
                     href={link.href}
                     class="text-gray-300 hover:text-blue-300 transition-colors text-sm block py-1"
+                    aria-label={`ir a la seccion de servicios - ${link.name}`}
                   >
                     {link.name}
                   </a>
@@ -120,7 +134,6 @@ const links = {
             }
           </ul>
         </div>
-        <!-- la clinica -->
         <div class="">
           <div>
             <h3 class="text-white font-semibold mb-4">La Clínica</h3>
