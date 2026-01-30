@@ -25,3 +25,9 @@
   --color-secondary: var(--color-secondary);
   --color-foreground-muted: var(--color-foreground-muted);
 }
+
+h1,
+.hero-title {
+  line-height: 1.2;
+  font-display: optional;
+}
