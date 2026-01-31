@@ -1,6 +1,4 @@
 ---
-import SwiperCarousel from "../common/SwiperCarousel.astro";
-
 import Sp1 from "../../images/specialists/sp1.jpg";
 import Sp2 from "../../images/specialists/sp2.jpg";
 import Sp3 from "../../images/specialists/sp3.jpg";
@@ -38,11 +36,10 @@ const team: Doctor[] = [
 
 <section
   id="specialists"
-  class="bg-linear-to-b from-transparent via-emerald-50/60 to-transparent pt-20 pb-20 md:pb-30  md:pt-30 px-4"
+  class="bg-linear-to-b from-transparent via-emerald-50/60 to-transparent pt-20 pb-20 md:pb-30 md:pt-30 px-4"
   aria-labelledby="team-title"
 >
   <div class="max-w-6xl mx-auto flex flex-col gap-5">
-    <!-- Eyebrow -->
     <div class="inline-block mb-2">
       <span
         class="font-heading text-foreground-muted font-bold tracking-widest text-sm uppercase flex items-center gap-2"
@@ -51,7 +48,6 @@ const team: Doctor[] = [
       </span>
     </div>
 
-    <!-- section title -->
     <h2
       id="team-title"
       class="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 leading-tight mb-8"
@@ -60,7 +56,7 @@ const team: Doctor[] = [
       <span class="text-accent"> equipo profesional</span>
     </h2>
     <!-- specialists -->
-    <div class="grid grid-cols-1 gap-3 sm:grid-cols-3" >
+    <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
       {
         team.map((doctor) => (
           <div class="swiper-slide p-1">

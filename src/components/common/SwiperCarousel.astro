@@ -1,5 +1,4 @@
 ---
-// src/components/Carrusel.astro
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -16,10 +15,6 @@ const { id = "swiper-reutilizable" } = Astro.props;
     <div class="swiper-wrapper">
       <slot />
     </div>
-
-    <!-- <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div> -->
-
     <div class="swiper-pagination"></div>
   </div>
 </div>
@@ -27,34 +22,16 @@ const { id = "swiper-reutilizable" } = Astro.props;
 <style>
   .swiper {
     width: 100%;
-    /* Ajusta este padding si sientes que los puntos (dots) están muy lejos o cerca */
     padding-bottom: 50px;
   }
 
-  /* TRUCO DE ALTURA:
-     Esto asegura que todos los slides tengan la misma altura 
-     del slide más alto (útil para cards).
-  */
   .swiper-wrapper {
     align-items: stretch;
   }
 
-  /* Aseguramos que el slide ocupe todo el alto disponible */
   :global(.swiper-slide) {
     height: auto;
-    display: flex; /* Esto permite que el hijo (la card) use height: 100% */
-  }
-
-  /* Tus estilos de botones previos... */
-  :global(.swiper-button-next),
-  :global(.swiper-button-prev) {
-    color: #333;
-    background: rgba(255, 255, 255, 0.8);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 20; /* Asegura que estén encima de las cards */
+    display: flex;
   }
 
   :global(.swiper-button-next:after),
@@ -84,13 +61,11 @@ const { id = "swiper-reutilizable" } = Astro.props;
         spaceBetween: 20,
         slidesPerView: 1,
 
-        // --- AQUÍ ESTÁ LA CONFIGURACIÓN DEL AUTOPLAY ---
         autoplay: {
-          delay: 3000, // Tiempo en milisegundos (3 segundos)
-          disableOnInteraction: false, // Si es 'true', se para cuando el usuario toca el carrusel
-          pauseOnMouseEnter: true, // (Opcional) Se pausa si pones el mouse encima
+          delay: 3000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
         },
-        // -----------------------------------------------
 
         breakpoints: {
           640: { slidesPerView: 2, spaceBetween: 20 },
@@ -101,6 +76,7 @@ const { id = "swiper-reutilizable" } = Astro.props;
           nextEl: swiperEl.querySelector(".swiper-button-next") as HTMLElement,
           prevEl: swiperEl.querySelector(".swiper-button-prev") as HTMLElement,
         },
+
         pagination: {
           el: swiperEl.querySelector(".swiper-pagination") as HTMLElement,
           clickable: true,

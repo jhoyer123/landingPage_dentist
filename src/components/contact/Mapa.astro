@@ -49,7 +49,7 @@
     }
   };
 
-  // Cargar cuando sea visible (Intersection Observer)
+  // Cargar cuando sea visible
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -64,8 +64,6 @@
 
   if (mapContainer) {
     observer.observe(mapContainer);
-
-    // O cargar al hacer clic
     mapContainer.addEventListener("click", loadMap, { once: true });
   }
 </script>

@@ -1,13 +1,21 @@
 ---
 import SwiperCarousel from "../common/SwiperCarousel.astro";
 
+import testimonial1 from "../../images/testimonials/testimonial1.jpg";
+import testimonial2 from "../../images/testimonials/testimonial2.jpg";
+import testimonial3 from "../../images/testimonials/testimonial3.jpg";
+import testimonial4 from "../../images/testimonials/testimonial4.jpg";
+import testimonial5 from "../../images/testimonials/testimonial5.jpg";
+import clinica from "../../images/clinica.jpg";
+import { Image } from "astro:assets";
+
 interface Testimonial {
   rating: string;
   title: string;
   content: string;
   author: string;
   role: string;
-  avatar: string;
+  avatar: ImageMetadata;
 }
 
 const testimonials: Testimonial[] = [
@@ -18,7 +26,7 @@ const testimonials: Testimonial[] = [
       "Desde la primera consulta me sentí en confianza. El trato fue excelente y el resultado superó mis expectativas.",
     author: "Leslie Alexander",
     role: "Paciente satisfecha",
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+    avatar: testimonial1,
   },
   {
     rating: "5.0",
@@ -27,7 +35,7 @@ const testimonials: Testimonial[] = [
       "El equipo es muy profesional y las instalaciones son modernas. Sin duda volveré para mis controles.",
     author: "Bessie Lane",
     role: "Paciente satisfecha",
-    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+    avatar: testimonial2,
   },
   {
     rating: "5.0",
@@ -36,7 +44,7 @@ const testimonials: Testimonial[] = [
       "Me explicaron cada paso del tratamiento y resolvieron todas mis dudas. Me sentí muy bien atendido.",
     author: "Carlos Méndez",
     role: "Paciente",
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+    avatar: testimonial3,
   },
   {
     rating: "4.9",
@@ -45,7 +53,7 @@ const testimonials: Testimonial[] = [
       "Mi sonrisa cambió por completo. La atención fue rápida, clara y muy profesional.",
     author: "Ana Rodríguez",
     role: "Paciente",
-    avatar: "https://randomuser.me/api/portraits/women/21.jpg",
+    avatar: testimonial4,
   },
   {
     rating: "5.0",
@@ -54,20 +62,22 @@ const testimonials: Testimonial[] = [
       "Un equipo humano increíble. Se nota la experiencia y el cuidado en cada detalle.",
     author: "Luis Fernández",
     role: "Paciente",
-    avatar: "https://randomuser.me/api/portraits/men/45.jpg",
+    avatar: testimonial5,
   },
 ];
 ---
 
 <section
   id="testimonials"
-  class="relative bg-fixed bg-center bg-cover py-24 px-4 overflow-hidden"
-  style="background-image: url('https://i.pinimg.com/736x/c5/5a/bd/c55abdeda140d006158b955cad4e553a.jpg');"
+  class="relative bg-fixed bg-center bg-no-repeat bg-cover py-24 px-4 overflow-hidden"
+  style={{ backgroundImage: `url('${clinica.src}')` }}
 >
   <div class="absolute inset-0 bg-[#0B1528]/30 z-0"></div>
 
   <div class="relative z-10 max-w-6xl mx-auto flex flex-col gap-5">
-    <span class="font-heading text-white font-bold tracking-widest text-sm uppercase gap-2">
+    <span
+      class="font-heading text-white font-bold tracking-widest text-sm uppercase gap-2"
+    >
       TESTIMONIOS
     </span>
 
@@ -78,7 +88,7 @@ const testimonials: Testimonial[] = [
       <span class="text-white"> pacientes</span>
     </h2>
 
-    <SwiperCarousel>
+    <SwiperCarousel client:visible>
       {
         testimonials.map((item) => (
           <div class="swiper-slide">
@@ -97,12 +107,16 @@ const testimonials: Testimonial[] = [
               <h3 class="text-xl font-bold text-slate-900 mb-4 font-heading">
                 {item.title}
               </h3>
-              <p class="text-gray-700 leading-relaxed mb-8 font-body">“{item.content}”</p>
+              <p class="text-gray-700 leading-relaxed mb-8 font-body">
+                “{item.content}”
+              </p>
 
               <div class="flex items-center gap-4">
-                <img
+                <Image
                   src={item.avatar}
-                  alt={item.author}
+                  alt={`Foto de ${item.author}`}
+                  width={56}
+                  height={56}
                   class="w-14 h-14 rounded-full object-cover border-2 border-emerald-50"
                 />
                 <div>

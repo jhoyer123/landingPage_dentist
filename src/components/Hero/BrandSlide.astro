@@ -27,12 +27,12 @@ const brands = [
   },
 ];
 
-// Duplicamos la lista para asegurar que siempre haya contenido visible
 const doubledBrands = [...brands, ...brands];
 ---
 
-<div class="w-full overflow-hidden py-2 absolute bottom-10 max-w-6xl mx-auto left-0 right-0">
-  <!-- Contenedor principal con flex-nowrap -->
+<div
+  class="w-full overflow-hidden py-2 absolute bottom-10 max-w-6xl mx-auto left-0 right-0"
+>
   <div
     class="flex w-max flex-nowrap animate-scroll hover:[animation-play-state:paused]"
   >
@@ -46,13 +46,11 @@ const doubledBrands = [...brands, ...brands];
     }
   </div>
 
-  <!-- Capa de niebla Izquierda -->
   <div
     class="absolute inset-y-0 left-0 w-1/6 bg-linear-to-r from-[#f9fafb] to-transparent pointer-events-none"
   >
   </div>
 
-  <!-- Capa de niebla Derecha -->
   <div
     class="absolute inset-y-0 right-0 w-1/6 bg-linear-to-l from-[#f9fafb] to-transparent pointer-events-none"
   >
@@ -65,7 +63,6 @@ const doubledBrands = [...brands, ...brands];
       transform: translateX(0);
     }
     to {
-      /* Se desplaza exactamente la mitad, que es el set original */
       transform: translateX(-50%);
     }
   }
